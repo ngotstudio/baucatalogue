@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ngọt — Trải Nghiệm Thai Kỳ · Emotional Art</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────────────────
+   TOKENS — Ngọt-Bầu Brand System
+───────────────────────────────────────────────────────── */
+:root {
+  --noir:        #18151A;
+  --noir-mid:    #261F28;
+  --noir-soft:   #342B36;
+  --ngà:         #F5EFE3;
+  --ngà-dim:     #C8BFB0;
+  --ngà-faint:   #8C8278;
+  --hong:        #C4877A;
+  --hong-pale:   #EDD8D3;
+  --hong-deep:   #9A5A4E;
+  --champ:       #C9A47A;
+  --champ-pale:  #EAD9C0;
+  --line-d:      rgba(245,239,227,0.07);
+  --line-h:      rgba(196,135,122,0.22);
+  --head:        'Playfair Display', Georgia, serif;
+  --body:        'Manrope', sans-serif;
+  --logo:        'Great Vibes', 'Playfair Display', cursive;
+}
+
+/* ─────────────────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+
+body {
+  background: var(--noir);
+  color: var(--ngà);
+  font-family: var(--body);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain analog overlay */
+body::after {
+  content:'';
+  position:fixed; inset:0;
+  pointer-events:none; z-index:9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:0.45;
+}
+
+/* ─────────────────────────────────────────────────────────
+   NAVIGATION
+───────────────────────────────────────────────────────── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  background: rgba(24,21,26,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--line-d);
+  height:64px;
+  padding: 0 56px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav-logo {
+  font-family: var(--logo);
+  font-size:32px; color:var(--hong); line-height:1;
+}
+.nav-right {
+  display:flex; align-items:center; gap:40px;
+}
+.nav-tag {
+  font-family: var(--body);
+  font-size:9px; font-weight:500;
+  letter-spacing:0.3em; text-transform:uppercase;
+  color: var(--ngà-faint);
+}
+.nav-cta {
+  font-family: var(--body);
+  font-size:9px; font-weight:600;
+  letter-spacing:0.25em; text-transform:uppercase;
+  color: var(--champ);
+  text-decoration:none;
+  border-bottom:1px solid rgba(201,164,122,0.35);
+  padding-bottom:2px;
+  transition: color 0.2s;
+}
+.nav-cta:hover { color:var(--hong); border-color:rgba(196,135,122,0.5); }
+
+/* ─────────────────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────────────────── */
+.hero {
+  position:relative;
+  height:100vh; min-height:720px;
+  overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-img {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center 28%;
+  filter: brightness(0.55) saturate(0.85);
+}
+.hero-grad {
+  position:absolute; inset:0;
+  background: linear-gradient(
+    180deg,
+    rgba(24,21,26,0.25) 0%,
+    rgba(24,21,26,0.05) 35%,
+    rgba(24,21,26,0.55) 75%,
+    rgba(24,21,26,1) 100%
+  );
+}
+.hero-body {
+  position:relative; z-index:2;
+  text-align:center;
+  max-width:820px; padding:0 48px;
+  padding-top:64px;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:16px;
+  font-family:var(--body);
+  font-size:9px; font-weight:500;
+  letter-spacing:0.4em; text-transform:uppercase;
+  color: var(--champ);
+  margin-bottom:28px;
+}
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content:'';
+  display:block; width:32px; height:1px;
+  background:var(--champ); opacity:0.5;
+}
+.hero-title {
+  font-family:var(--head);
+  font-size: clamp(38px, 5.5vw, 68px);
+  font-weight:400; line-height:1.12;
+  color:var(--ngà);
+  margin-bottom:28px;
+  letter-spacing:-0.01em;
+}
+.hero-title em {
+  font-style:italic; color:var(--hong-pale);
+  display:block;
+}
+.hero-sub {
+  font-family:var(--body);
+  font-size:14px; font-weight:300;
+  line-height:1.9; letter-spacing:0.04em;
+  color:var(--ngà-dim);
+  max-width:520px; margin:0 auto;
+}
+.hero-scroll {
+  position:absolute; bottom:44px; left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+}
+.hero-scroll-label {
+  font-family:var(--body);
+  font-size:8px; font-weight:500;
+  letter-spacing:0.35em; text-transform:uppercase;
+  color:var(--ngà-faint);
+}
+.scroll-bar {
+  width:1px; height:48px;
+  background:linear-gradient(to bottom, var(--champ), transparent);
+  animation:scrollPulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity:0.25; transform:scaleY(1); }
+  55%      { opacity:0.9;  transform:scaleY(0.65); }
+}
+
+/* ─────────────────────────────────────────────────────────
+   INTRO QUOTE BAND
+───────────────────────────────────────────────────────── */
+.intro-band {
+  max-width:1080px; margin:0 auto;
+  padding:96px 56px 80px;
+  display:grid; grid-template-columns:2px 1fr;
+  gap:0 52px; align-items:start;
+}
+.band-rule {
+  width:2px;
+  background:linear-gradient(to bottom, var(--hong) 0%, rgba(196,135,122,0) 100%);
+  min-height:140px;
+}
+.band-tag {
+  font-family:var(--body);
+  font-size:9px; font-weight:600;
+  letter-spacing:0.35em; text-transform:uppercase;
+  color:var(--champ); margin-bottom:18px;
+}
+.band-quote {
+  font-family:var(--head);
+  font-size:clamp(22px, 2.6vw, 34px);
+  font-weight:400; font-style:italic;
+  line-height:1.65; color:var(--ngà);
+}
+.band-quote strong {
+  font-style:normal; font-weight:600;
+  color:var(--hong-pale);
+}
+
+/* ─────────────────────────────────────────────────────────
+   ORNAMENT DIVIDER
+───────────────────────────────────────────────────────── */
+.orn-divider {
+  display:flex; align-items:center; gap:20px;
+  padding:0 56px; margin:8px 0;
+}
+.orn-line { flex:1; height:1px; background:var(--line-d); }
+.orn-diamond {
+  width:7px; height:7px;
+  border:1px solid var(--champ);
+  transform:rotate(45deg); opacity:0.5;
+}
+
+/* ─────────────────────────────────────────────────────────
+   SHARED TYPOGRAPHY HELPERS
+───────────────────────────────────────────────────────── */
+.sec-num {
+  font-family:var(--body);
+  font-size:9px; font-weight:700;
+  letter-spacing:0.35em; text-transform:uppercase;
+  color:var(--champ); margin-bottom:14px;
+}
+.sec-h2 {
+  font-family:var(--head);
+  font-size:clamp(28px, 3.2vw, 48px);
+  font-weight:500; line-height:1.18;
+  color:var(--ngà); margin-bottom:22px;
+  letter-spacing:-0.01em;
+}
+.sec-h2 em { font-style:italic; color:var(--hong-pale); }
+.sec-p {
+  font-family:var(--body);
+  font-size:14.5px; font-weight:300;
+  line-height:1.9; color:var(--ngà-dim);
+}
+.sec-p strong { color:var(--ngà); font-weight:500; }
+.sec-p em { color:var(--hong-pale); font-style:italic; }
+
+/* ─────────────────────────────────────────────────────────
+   SECTION 01 — TƯ VẤN
+───────────────────────────────────────────────────────── */
+.s-split {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:82vh; overflow:hidden;
+  position:relative;
+}
+.s-split-img {
+  position:relative; overflow:hidden;
+}
+.s-split-img img {
+  width:100%; height:100%;
+  object-fit:cover; object-position:center top;
+  display:block;
+  transition:transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.s-split-img:hover img { transform:scale(1.04); }
+.s-split-img-shade {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(90deg, transparent 52%, rgba(38,31,40,0.62) 80%, var(--noir-mid) 100%),
+    linear-gradient(to bottom, rgba(24,21,26,0.42) 0%, transparent 22%, transparent 78%, rgba(24,21,26,0.42) 100%);
+}
+.s-split-content {
+  position:relative;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:88px 80px;
+  background:var(--noir-mid);
+}
+.s-split-content::before {
+  content:'';
+  position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 90% 70% at 60% 50%, rgba(196,135,122,0.05) 0%, transparent 65%);
+}
+.pt-list {
+  list-style:none;
+  margin-top:24px; display:flex; flex-direction:column; gap:13px;
+}
+.pt-list li {
+  display:flex; align-items:flex-start; gap:14px;
+  font-family:var(--body); font-size:14px; font-weight:300;
+  color:var(--ngà-dim); line-height:1.75;
+}
+.pt-list li::before {
+  content:'';
+  display:block; min-width:5px; width:5px; height:5px;
+  border-radius:50%; background:var(--hong);
+  margin-top:9px;
+}
+.pt-list li strong { color:var(--ngà); font-weight:500; }
+.section-note {
+  margin-top:28px; padding-top:24px;
+  border-top:1px solid var(--line-d);
+  font-family:var(--head);
+  font-size:15px; font-style:italic;
+  color:var(--hong-pale); line-height:1.7;
+}
+
+/* ─────────────────────────────────────────────────────────
+   SECTION 02 — TRANG PHỤC
+───────────────────────────────────────────────────────── */
+.s-fullbleed {
+  position:relative;
+  min-height:78vh; overflow:hidden;
+  display:flex; align-items:center;
+}
+.s-fullbleed img.bg {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  filter:brightness(0.5) saturate(0.8);
+}
+.s-fullbleed .overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(24,21,26,0.92) 0%,
+    rgba(24,21,26,0.65) 48%,
+    rgba(24,21,26,0.12) 100%
+  );
+}
+.s-fullbleed-content {
+  position:relative; z-index:2;
+  max-width:520px; padding:80px 88px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   SECTION 03 — MAKEUP
+───────────────────────────────────────────────────────── */
+.s-makeup {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:76vh; overflow:hidden;
+  position:relative;
+}
+.s-makeup-content {
+  position:relative;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:88px 80px;
+  background:var(--noir-soft);
+}
+.s-makeup-content::before {
+  content:'';
+  position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 40% 50%, rgba(201,164,122,0.05) 0%, transparent 65%);
+}
+.s-makeup-photos {
+  display:grid; grid-template-rows:1fr 1fr;
+  overflow:hidden;
+}
+.s-makeup-photos .ph {
+  position:relative; overflow:hidden;
+}
+.s-makeup-photos .ph img {
+  width:100%; height:100%;
+  object-fit:cover; object-position:center top;
+  display:block;
+}
+.s-makeup-photos .ph + .ph {
+  border-top:3px solid var(--noir);
+}
+
+/* ─────────────────────────────────────────────────────────
+   SECTION 04 — CHỤP
+───────────────────────────────────────────────────────── */
+.s-shoot {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:84vh; overflow:hidden;
+  position:relative;
+}
+.s-shoot-photos {
+  display:grid; grid-template-rows:58% 42%;
+  overflow:hidden;
+}
+.s-shoot-photos .ph {
+  position:relative; overflow:hidden;
+}
+.s-shoot-photos .ph img {
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  display:block;
+}
+.s-shoot-photos .ph + .ph {
+  border-top:3px solid var(--noir);
+}
+.s-shoot-content {
+  position:relative;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:88px 80px;
+  background:var(--noir-mid);
+}
+.s-shoot-content::before {
+  content:'';
+  position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 85% 65% at 55% 50%, rgba(196,135,122,0.05) 0%, transparent 65%);
+}
+.badge-row {
+  display:flex; gap:12px; flex-wrap:wrap;
+  margin-top:30px;
+}
+.badge {
+  padding:10px 22px;
+  border:1px solid var(--line-h);
+  font-family:var(--body);
+  font-size:10px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--hong-pale);
+}
+
+/* ─────────────────────────────────────────────────────────
+   SECTION 05 — LÝ DO KHÁC BIỆT
+───────────────────────────────────────────────────────── */
+.s-reason {
+  padding:120px 56px;
+  position:relative; overflow:hidden;
+}
+.s-reason::before {
+  content:'';
+  position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 55% 70% at 50% 50%, rgba(196,135,122,0.07) 0%, transparent 65%);
+}
+.s-reason-inner {
+  max-width:860px; margin:0 auto;
+  position:relative; text-align:center;
+}
+.big-quote {
+  font-family:var(--head);
+  font-size:140px; line-height:0.55;
+  color:var(--hong); opacity:0.18;
+  user-select:none;
+  margin-bottom:16px;
+}
+.reason-h {
+  font-family:var(--head);
+  font-size:clamp(22px, 2.8vw, 38px);
+  font-weight:400; font-style:italic;
+  line-height:1.65; color:var(--ngà);
+  margin-bottom:36px;
+}
+.reason-h em {
+  font-style:normal; font-weight:600;
+  color:var(--hong-pale);
+}
+.reason-rule {
+  width:72px; height:1px;
+  background:var(--champ); opacity:0.45;
+  margin:36px auto;
+}
+.reason-punch {
+  font-family:var(--head);
+  font-size:clamp(18px, 2vw, 27px);
+  font-weight:500; font-style:italic;
+  line-height:1.65; color:var(--hong-pale);
+}
+.reason-punch em {
+  font-style:normal;
+  border-bottom:1px solid rgba(196,135,122,0.4);
+  padding-bottom:1px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   KEYLINE BAND
+───────────────────────────────────────────────────────── */
+.keyline-band {
+  padding:80px 56px;
+  border-top:1px solid var(--line-d);
+  border-bottom:1px solid var(--line-d);
+  display:flex; align-items:center; justify-content:center;
+}
+.keyline-text {
+  font-family:var(--head);
+  font-size:clamp(17px, 2.1vw, 28px);
+  font-style:italic; line-height:1.75;
+  color:var(--ngà); text-align:center;
+  max-width:780px;
+}
+.keyline-text em {
+  font-style:normal; font-weight:600;
+  color:var(--hong-pale);
+}
+
+/* ─────────────────────────────────────────────────────────
+   CTA SECTION
+───────────────────────────────────────────────────────── */
+.s-cta {
+  position:relative;
+  min-height:86vh; overflow:hidden;
+  display:flex; align-items:center;
+}
+.s-cta img.bg {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center top;
+  filter:brightness(0.42) saturate(0.8);
+}
+.s-cta .overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(24,21,26,0.95) 0%,
+    rgba(24,21,26,0.72) 46%,
+    rgba(24,21,26,0.15) 100%
+  );
+}
+.s-cta-body {
+  position:relative; z-index:2;
+  max-width:580px; padding:100px 88px;
+}
+.cta-eyebrow {
+  font-family:var(--body);
+  font-size:9px; font-weight:600;
+  letter-spacing:0.38em; text-transform:uppercase;
+  color:var(--champ); margin-bottom:30px;
+}
+.cta-h {
+  font-family:var(--head);
+  font-size:clamp(32px, 4.2vw, 56px);
+  font-weight:500; line-height:1.18;
+  color:var(--ngà); margin-bottom:28px;
+}
+.cta-h em {
+  font-style:italic; color:var(--hong-pale);
+  display:block;
+}
+.cta-p {
+  font-family:var(--body);
+  font-size:15px; font-weight:300;
+  line-height:1.9; color:var(--ngà-dim);
+  margin-bottom:48px; max-width:480px;
+}
+.cta-btn {
+  display:inline-flex; align-items:center; gap:14px;
+  padding:18px 44px;
+  border:1px solid var(--hong);
+  background:transparent;
+  color:var(--ngà);
+  font-family:var(--body); font-size:10px; font-weight:700;
+  letter-spacing:0.28em; text-transform:uppercase;
+  text-decoration:none; cursor:pointer;
+  position:relative; overflow:hidden;
+  transition:color 0.3s;
+}
+.cta-btn::before {
+  content:'';
+  position:absolute; inset:0;
+  background:var(--hong);
+  transform:translateX(-100%);
+  transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.cta-btn:hover::before { transform:translateX(0); }
+.cta-btn span,
+.cta-btn .arr { position:relative; z-index:1; }
+.cta-btn .arr {
+  font-size:15px;
+  transition:transform 0.3s ease;
+}
+.cta-btn:hover .arr { transform:translateX(5px); }
+.cta-script {
+  margin-top:36px;
+  font-family:var(--logo);
+  font-size:22px; color:var(--champ);
+  opacity:0.7; line-height:1.4;
+}
+
+/* ─────────────────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────────────────── */
+footer {
+  padding:56px;
+  background:var(--noir-mid);
+  border-top:1px solid var(--line-d);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.ft-logo { font-family:var(--logo); font-size:38px; color:var(--hong); line-height:1; }
+.ft-info {
+  text-align:right;
+  font-family:var(--body); font-size:12px; font-weight:300;
+  color:var(--ngà-dim); line-height:1.9; letter-spacing:0.04em;
+}
+.ft-info .ft-phone {
+  font-size:13px; font-weight:500;
+  color:var(--hong); letter-spacing:0.1em;
+  margin-top:6px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   SECTION TRANSITIONS — top/bottom fade into noir bg
+───────────────────────────────────────────────────────── */
+.s-split::before, .s-makeup::before, .s-shoot::before, .s-fullbleed::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to bottom, var(--noir) 0%, transparent 100%);
+  z-index: 8; pointer-events: none;
+}
+.s-split::after, .s-makeup::after, .s-shoot::after, .s-fullbleed::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to top, var(--noir) 0%, transparent 100%);
+  z-index: 8; pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────
+   PHOTO PANEL EDGE BLENDS
+───────────────────────────────────────────────────────── */
+/* Makeup: blend left edge into text column */
+.s-makeup-photos {
+  position: relative;
+}
+.s-makeup-photos::before {
+  content: ''; position: absolute;
+  top: 0; bottom: 0; left: 0; width: 80px;
+  background: linear-gradient(to right, var(--noir-soft) 0%, transparent 100%);
+  z-index: 5; pointer-events: none;
+}
+/* Shoot: blend right edge into text column */
+.s-shoot-photos {
+  position: relative;
+}
+.s-shoot-photos::before {
+  content: ''; position: absolute;
+  top: 0; bottom: 0; right: 0; width: 80px;
+  background: linear-gradient(to left, var(--noir-mid) 0%, transparent 100%);
+  z-index: 5; pointer-events: none;
+}
+/* .ph panels: top & bottom gradient per photo cell */
+.s-makeup-photos .ph::after,
+.s-shoot-photos .ph::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(24,21,26,0.44) 0%,
+    transparent 28%,
+    transparent 72%,
+    rgba(24,21,26,0.44) 100%
+  );
+  pointer-events: none; z-index: 1;
+}
+/* Divider line between .ph panels: soften with gradient instead of hard border */
+.s-makeup-photos .ph + .ph,
+.s-shoot-photos .ph + .ph {
+  border-top: none;
+  box-shadow: inset 0 6px 18px rgba(24,21,26,0.7);
+}
+
+/* ─────────────────────────────────────────────────────────
+   IMAGE PANEL SCROLL REVEAL
+───────────────────────────────────────────────────────── */
+[data-img-reveal] {
+  opacity: 0;
+  transform: scale(0.97) translateY(20px);
+  transition:
+    opacity 1.15s cubic-bezier(0.25,0.46,0.45,0.94),
+    transform 1.15s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+[data-img-reveal].visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ─────────────────────────────────────────────────────────
+   KEN BURNS — subtle drift on fullbleed bg images
+───────────────────────────────────────────────────────── */
+@keyframes kenburns {
+  from { transform: scale(1.0) translateX(0); }
+  to   { transform: scale(1.07) translateX(-1.2%); }
+}
+@keyframes kenburns-cta {
+  from { transform: scale(1.0) translateX(0); }
+  to   { transform: scale(1.06) translateX(0.8%); }
+}
+.s-fullbleed img.bg {
+  animation: kenburns 18s ease-in-out forwards;
+}
+.s-cta img.bg {
+  animation: kenburns-cta 16s ease-in-out forwards;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────────────────────── */
+[data-reveal] {
+  opacity:0; transform:translateY(28px);
+  transition:opacity 0.85s ease, transform 0.85s ease;
+}
+[data-reveal].visible {
+  opacity:1; transform:translateY(0);
+}
+[data-reveal-delay="1"] { transition-delay:0.12s; }
+[data-reveal-delay="2"] { transition-delay:0.24s; }
+[data-reveal-delay="3"] { transition-delay:0.36s; }
+
+/* ─────────────────────────────────────────────────────────
+   PORTFOLIO — Ivory Muse Collection
+───────────────────────────────────────────────────────── */
+.s-portfolio {
+  padding: 120px 56px;
+  background: var(--noir);
+  position: relative;
+  overflow: hidden;
+}
+/* Gradient fade trên — hoà vào nền */
+.s-portfolio::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 180px;
+  background: linear-gradient(to bottom, var(--noir) 0%, transparent 100%);
+  z-index: 4; pointer-events: none;
+}
+/* Gradient fade dưới — hoà vào nền */
+.s-portfolio::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 180px;
+  background: linear-gradient(to top, var(--noir) 0%, transparent 100%);
+  z-index: 4; pointer-events: none;
+}
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 64px;
+  position: relative; z-index: 5;
+}
+.portfolio-collection-name {
+  font-family: var(--logo);
+  font-size: 56px;
+  color: var(--hong);
+  opacity: 0.85;
+  line-height: 1;
+  margin-bottom: 12px;
+  display: block;
+}
+.portfolio-subtitle {
+  font-family: var(--body);
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--champ);
+  display: block;
+  margin-bottom: 20px;
+}
+.portfolio-desc {
+  font-family: var(--head);
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-style: italic;
+  color: var(--ngà-dim);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 4px;
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative; z-index: 2;
+  /* Fade cạnh trái-phải */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+}
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  /* Scroll reveal initial state */
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition:
+    opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94),
+    transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.portfolio-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.portfolio-item:nth-child(2) { transition-delay: 0.1s; }
+.portfolio-item:nth-child(3) { transition-delay: 0.2s; }
+.portfolio-item:nth-child(4) { transition-delay: 0.15s; }
+.portfolio-item:nth-child(5) { transition-delay: 0.25s; }
+/* 1st item tall (2 rows) */
+.portfolio-item:nth-child(1) {
+  grid-row: span 2;
+}
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 1s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.6s ease;
+  filter: brightness(0.88) saturate(0.85);
+}
+.portfolio-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1) saturate(1);
+}
+/* Gradient nội bộ: làm mờ cạnh trên/dưới từng ảnh */
+.portfolio-item::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(24,21,26,0.35) 0%,
+    transparent 28%,
+    transparent 72%,
+    rgba(24,21,26,0.35) 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.portfolio-item:hover::after {
+  opacity: 0.4;
+}
+.portfolio-item-overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background: rgba(24,21,26,0);
+  transition: background 0.4s ease;
+}
+.portfolio-item:hover .portfolio-item-overlay {
+  background: rgba(24,21,26,0.18);
+}
+/* Fixed heights for non-spanning items */
+.portfolio-item:nth-child(n+2) {
+  aspect-ratio: 3/4;
+}
+.portfolio-item:nth-child(1) {
+  aspect-ratio: unset;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <span class="nav-logo">ngọt</span>
+  <div class="nav-right">
+    <span class="nav-tag">Emotional Art · Thai&nbsp;Kỳ</span>
+    <a href="tel:0989774102" class="nav-cta">Đặt lịch ngay</a>
+  </div>
+</nav>
+
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <img class="hero-img"
+       src="5. 2026.04.17 - Phan Hà Phương - 0702080000 - Bau - Hậu trường/DSCF1249.jpg"
+       alt="Ekip Ngọt Studio trong buổi chụp bầu">
+  <div class="hero-grad"></div>
+
+  <div class="hero-body">
+    <p class="hero-eyebrow">Catalogue · Trải Nghiệm Thai Kỳ</p>
+    <h1 class="hero-title">
+      Không phải chụp ảnh —
+      <em>một hành trình được kiểm soát</em>
+    </h1>
+    <p class="hero-sub">Ngọt không chỉ tạo ra hình ảnh. Chúng em tạo ra trải nghiệm mà chị sẽ biết trước bộ ảnh của mình sẽ đẹp — trước khi buổi chụp bắt đầu.</p>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="hero-scroll-label">Khám phá</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════ INTRO QUOTE ═══════════ -->
+<div class="intro-band">
+  <div class="band-rule"></div>
+  <div class="band-inner" data-reveal>
+    <p class="band-tag">Điều chị chưa biết về Ngọt</p>
+    <p class="band-quote">
+      "Chị ơi, nhiều khách khi đến Ngọt hay nghĩ là mình chỉ chụp ảnh thôi,
+      nhưng thực ra bên em làm theo <strong>một quy trình rất khác…</strong>"
+    </p>
+  </div>
+</div>
+
+<div class="orn-divider">
+  <div class="orn-line"></div>
+  <div class="orn-diamond"></div>
+  <div class="orn-line"></div>
+</div>
+
+
+<!-- ═══════════ 01 — TƯ VẤN ═══════════ -->
+<section class="s-split">
+  <div class="s-split-img" data-img-reveal>
+    <img src="5. 2026.04.17 - Phan Hà Phương - 0702080000 - Bau - Hậu trường/DSCF0628.jpg"
+         alt="Tư vấn và định hướng concept trước buổi chụp bầu tại Ngọt Studio">
+    <div class="s-split-img-shade"></div>
+  </div>
+  <div class="s-split-content">
+    <div data-reveal>
+      <p class="sec-num">01 — Chăm Sóc &amp; Tư Vấn</p>
+      <h2 class="sec-h2">Hiểu chị trước<br>khi <em>cầm máy lên</em></h2>
+    </div>
+    <div data-reveal data-reveal-delay="1">
+      <p class="sec-p">Ngay từ lúc chị tới, bên em sẽ không vội chụp luôn,
+      mà sẽ ngồi cùng chị để hiểu:</p>
+      <ul class="pt-list">
+        <li>Chị thích phong cách <strong>nhẹ nhàng hay sang trọng</strong></li>
+        <li>Dáng người mình nên <strong>tôn phần nào</strong></li>
+        <li>Tone màu nào <strong>hợp với làn da của chị</strong></li>
+      </ul>
+    </div>
+    <div data-reveal data-reveal-delay="2">
+      <p class="section-note">
+        Để đảm bảo bộ ảnh không phải <em>đẹp chung chung</em>,
+        mà là đẹp riêng cho chị.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 02 — TRANG PHỤC ═══════════ -->
+<section class="s-fullbleed">
+  <img class="bg"
+       src="5. 2026.04.17 - Phan Hà Phương - 0702080000 - Bau - Hậu trường/DSCF0836.jpg"
+       alt="Kho trang phục phong phú tại Ngọt Studio">
+  <div class="overlay"></div>
+  <div class="s-fullbleed-content">
+    <div data-reveal>
+      <p class="sec-num">02 — Trang Phục &amp; Styling</p>
+      <h2 class="sec-h2">Không để chị<br><em>tự xoay sở</em></h2>
+    </div>
+    <div data-reveal data-reveal-delay="1">
+      <p class="sec-p">
+        Sau đó bên em sẽ có stylist hỗ trợ chị chọn trang phục,
+        phối sẵn theo concept đã định hướng.
+      </p>
+      <p class="sec-p" style="margin-top:18px;">
+        <strong>Chị không cần phải chuẩn bị gì cả</strong> —
+        vì tụi em đã chuẩn bị sẵn mọi thứ để lên hình đẹp nhất rồi.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 03 — MAKEUP ═══════════ -->
+<section class="s-makeup">
+  <div class="s-makeup-content">
+    <div data-reveal>
+      <p class="sec-num">03 — Makeup &amp; Tóc</p>
+      <h2 class="sec-h2">Tôn nét —<br><em>không thay hình đổi dạng</em></h2>
+    </div>
+    <div data-reveal data-reveal-delay="1">
+      <p class="sec-p">
+        Makeup bên em sẽ làm theo hướng tôn nét, để lên ảnh
+        <strong>vẫn là chị</strong> — chứ không phải một phiên bản khác.
+      </p>
+      <p class="sec-p" style="margin-top:18px;">
+        Làn da, đường nét, vẻ đẹp riêng của thai kỳ — tất cả đều được
+        <em>giữ nguyên và nâng lên đúng cách</em>.
+      </p>
+    </div>
+  </div>
+  <div class="s-makeup-photos" data-img-reveal>
+    <div class="ph">
+      <img src="5. 2026.04.17 - Phan Hà Phương - 0702080000 - Bau - Hậu trường/DSCF0724.jpg"
+           alt="Makeup artist làm đẹp cho mẹ bầu tại Ngọt Studio">
+    </div>
+    <div class="ph">
+      <img src="5. 2026.04.17 - Phan Hà Phương - 0702080000 - Bau - Hậu trường/DSCF0429.jpg"
+           alt="Làm tóc cho mẹ bầu tại Ngọt Studio">
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ 04 — CHỤP ═══════════ -->
+<section class="s-shoot">
+  <div class="s-shoot-photos" data-img-reveal>
+    <div class="ph">
+      <img src="5. 2026.04.17 - Phan Hà Phương - 0702080000 - Bau - Hậu trường/DSCF0977.jpg"
+           alt="Photographer Ngọt Studio chụp mẹ bầu">
+    </div>
+    <div class="ph">
+      <img src="5. 2026.04.17 - Phan Hà Phương - 0702080000 - Bau - Hậu trường/DSCF0849.jpg"
+           alt="Stylist chỉnh trang phục trên set chụp">
+    </div>
+  </div>
+  <div class="s-shoot-content">
+    <div data-reveal>
+      <p class="sec-num">04 — Trong Buổi Chụp</p>
+      <h2 class="sec-h2">Từng bấm máy<br><em>đều không phải hên xui</em></h2>
+    </div>
+    <div data-reveal data-reveal-delay="1">
+      <p class="sec-p">Trong lúc chụp, sẽ luôn có ekip hỗ trợ đầy đủ:</p>
+      <div class="badge-row">
+        <span class="badge">1 Photographer</span>
+        <span class="badge">1 Stylist on&#8209;set</span>
+      </div>
+    </div>
+    <div data-reveal data-reveal-delay="2">
+      <p class="sec-p" style="margin-top:28px;">
+        Từng nếp váy, từng góc mặt đều được
+        <strong>chỉnh lại trước khi bấm máy</strong>.
+        Và chị sẽ được xem lại ảnh ngay trong buổi chụp —
+        <em>nếu chưa ưng, chỉnh luôn tại chỗ</em>.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ KEYLINE ═══════════ -->
+<div class="keyline-band" data-reveal>
+  <p class="keyline-text">
+    "Thực ra ảnh đẹp không phải do may mắn,
+    mà là do mình <em>kiểm soát từng bước</em> như vậy."
+  </p>
+</div>
+
+
+<!-- ═══════════ 05 — LÝ DO ═══════════ -->
+<section class="s-reason">
+  <div class="s-reason-inner">
+    <div class="big-quote" aria-hidden="true">"</div>
+    <p class="sec-num" style="text-align:center; margin-bottom:28px;" data-reveal>
+      05 — Tại Sao Ảnh Ngọt Khác Biệt
+    </p>
+    <p class="reason-h" data-reveal data-reveal-delay="1">
+      Gói bên em không phải là <em>gói chụp đơn thuần</em>,
+      mà là một trải nghiệm được
+      <em>chuẩn bị và kiểm soát rất kỹ</em>.
+    </p>
+    <p class="sec-p" style="text-align:center; max-width:620px; margin:0 auto;" data-reveal data-reveal-delay="2">
+      Vì thế nên chị sẽ <strong>gần như biết trước</strong>
+      là ảnh của mình sẽ đẹp — chứ không phải kiểu chụp xong rồi mới chờ kết quả.
+    </p>
+    <div class="reason-rule"></div>
+    <p class="reason-punch" data-reveal data-reveal-delay="1">
+      Sự khác biệt lớn nhất là bên em
+      không để khách <em>"đánh cược"</em> với bộ ảnh của mình.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="s-cta">
+  <img class="bg"
+       src="5. 2026.04.17 - Phan Hà Phương - 0702080000 - Bau - Hậu trường/DSCF0881.jpg"
+       alt="Trải nghiệm chụp bầu tại Ngọt Studio">
+  <div class="overlay"></div>
+
+  <div class="s-cta-body">
+    <p class="cta-eyebrow" data-reveal>Đặt lịch ngay hôm nay</p>
+    <h2 class="cta-h" data-reveal data-reveal-delay="1">
+      Chị xứng đáng có
+      <em>một bộ ảnh được đảm bảo</em>
+    </h2>
+    <p class="cta-p" data-reveal data-reveal-delay="2">
+      Hãy để Ngọt đồng hành cùng chị trong hành trình thai kỳ —
+      với trọn vẹn sự chuẩn bị, chăm sóc và chuyên môn của cả ekip.
+    </p>
+    <div data-reveal data-reveal-delay="3">
+      <a href="tel:0989774102" class="cta-btn">
+        <span>Liên hệ Ngọt ngay</span>
+        <span class="arr">→</span>
+      </a>
+    </div>
+    <p class="cta-script" data-reveal data-reveal-delay="3">
+      Hành trình phát triển cảm xúc thông qua nhiếp ảnh
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════ FOOTER ═══════════ -->
+
+<!-- PORTFOLIO IVORY MUSE -->
+<section class="s-portfolio">
+  <div class="portfolio-header" data-reveal>
+    <span class="portfolio-subtitle">Bộ Sưu Tập · Demo</span>
+    <span class="portfolio-collection-name">Ivory Muse</span>
+    <p class="portfolio-desc">Vẻ đẹp thai kỳ được ghi lại trong ánh sáng tối giản, mang cảm xúc thật sự — đây là kết quả của quy trình bên em.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item" data-reveal>
+      <img src="Ivory Muse/MTN00421.jpg" alt="Ivory Muse">
+      <div class="portfolio-item-overlay"></div>
+    </div>
+    <div class="portfolio-item" data-reveal data-reveal-delay="1">
+      <img src="Ivory Muse/MTN00490.jpg" alt="Ivory Muse">
+      <div class="portfolio-item-overlay"></div>
+    </div>
+    <div class="portfolio-item" data-reveal data-reveal-delay="2">
+      <img src="Ivory Muse/MTN00588.jpg" alt="Ivory Muse">
+      <div class="portfolio-item-overlay"></div>
+    </div>
+    <div class="portfolio-item" data-reveal data-reveal-delay="1">
+      <img src="Ivory Muse/MTN00575.jpg" alt="Ivory Muse">
+      <div class="portfolio-item-overlay"></div>
+    </div>
+    <div class="portfolio-item" data-reveal data-reveal-delay="2">
+      <img src="Ivory Muse/MTN00693.jpg" alt="Ivory Muse">
+      <div class="portfolio-item-overlay"></div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <span class="ft-logo">ngọt</span>
+  <div class="ft-info">
+    <p>Ngọt Studio · Emotional Art</p>
+    <p>Phú Thọ &nbsp;·&nbsp; Hà Nội</p>
+    <p class="ft-phone">098 977 41 02</p>
+  </div>
+</footer>
+
+
+<script>
+(function() {
+  const els = document.querySelectorAll('[data-reveal]');
+  if (!els.length) return;
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -48px 0px' }
+  );
+  els.forEach(el => io.observe(el));
+
+  // Image panel reveal — scale + fade
+  const imgRevEls = document.querySelectorAll('[data-img-reveal]');
+  if (imgRevEls.length) {
+    const io3 = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io3.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.06, rootMargin: '0px 0px -50px 0px' }
+    );
+    imgRevEls.forEach(el => io3.observe(el));
+  }
+})();
+</script>
+
+</body>
+</html>
